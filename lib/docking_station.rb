@@ -7,16 +7,21 @@ class DockingStation
   end
 
   def release_bike
-    fail "No more bikes you fool!" unless @dock_arr.length >= 1
+    fail "No more bikes you fool!" unless empty
     @dock_arr.pop
   end
 
   def dock(bike)
+    fail 'No more room for bikes. Have already got 20' if full
+    @dock_arr << bike
+  end
 
-    if @dock_arr.length >= 20
-      fail 'No more room for bikes. Have already got 20'
-    else
-      @dock_arr << bike
-    end
+private
+  def full
+    @dock_arr.length >= 20
+  end
+
+  def empty
+    @dock_arr.length >= 1
   end
 end
