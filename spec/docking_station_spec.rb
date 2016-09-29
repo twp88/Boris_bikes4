@@ -21,19 +21,28 @@ describe 'docking_station' do
 
     it 'showed docked bikes' do
       station.dock(bike)
-      expect(station.bike).to be(bike)
+      expect(station.dock_arr).to eq([bike])
+    end
 end
 
+=begin
   describe 'already got a bike test' do
   station = DockingStation.new
   bike = Bike.new
   station.dock(bike)
   bike2 = Bike.new
     it 'cant dock a bike with a bike'  do
-
       expect{station.dock(:bike2)}.to raise_error("already got a bike")
     end
   end
-end
+=end
 
+describe 'Cant accept anymore bikes than 20' do
+  station = DockingStation.new
+  20.times {station.dock(Bike.new)}
+  it 'fails cos there are more than 20' do
+
+    expect{station.dock(Bike.new)}.to raise_error('No more room for bikes. Have already got 20')
+  end
+end
 end
