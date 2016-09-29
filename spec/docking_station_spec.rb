@@ -15,7 +15,7 @@ describe 'docking_station' do
     end
 
     it "doesn't release new bikes" do
-      expect{station.release_bike}.to raise_error('No more bikes you fool!')
+      expect{station.release_bike}.to fail('No more bikes you fool!')
 
 
     end
@@ -24,15 +24,17 @@ describe 'docking_station' do
 
   describe 'Working bike docking station functions' do
       bike = Bike.new
-      station.dock(bike)
-
 
     it 'gives bike' do
+      station.dock(bike)
       expect(station.release_bike).to be_kind_of(Bike)
+
     end
 
     it 'showed docked bikes' do
+      station.dock(bike)
       expect(station.bike).to be(bike)
+
     end
 
 
