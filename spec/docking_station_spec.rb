@@ -32,8 +32,18 @@ describe 'docking_station' do
     it 'showed docked bikes' do
       station.dock(bike)
       expect(station.bike).to be(bike)
+end
 
+  describe 'already got a bike test' do
+  station = DockingStation.new
+  bike = Bike.new
+  station.dock(bike)
+  bike2 = Bike.new
+    it 'cant dock a bike with a bike'  do
+
+      expect{station.dock(:bike2)}.to raise_error("already got a bike")
     end
   end
+end
 
 end

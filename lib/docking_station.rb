@@ -7,6 +7,10 @@ class DockingStation
   end
 
   def dock(bike)
-    @bike = bike
+    if @bike 
+      fail 'already got a bike'
+    else
+      @bike = bike
+  end
   end
 end
