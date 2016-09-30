@@ -43,4 +43,10 @@ context "Cant accept anymore bikes" do
     expect{station.dock(Bike.new)}.to raise_error("No more room for bikes. Already full with #{station.capacity} bikes")
   end
 end
+
+context "bike is broken?"
+it "checks status of the bike" do
+  expect(@bike.working).to eq(false)
+end
+
 end
