@@ -28,20 +28,21 @@ describe 'docking_station' do
       expect(@station.dock_arr).to eq([@bike])
     end
 
+
   it 'checks user set capacity' do
-    expect(@capacity).to be(20)
+    expect(@station.capacity).to eq(20)
   end
 
 
 end
 
-describe 'Cant accept anymore bikes than 20' do
+describe "Cant accept anymore bikes" do
   station = DockingStation.new(40)
-  it 'fails cos there are more than 20' do
+  it "fails cos there are too many bikes}" do
 
-    41.times {station.dock(Bike.new)}
+    40.times {station.dock(Bike.new)}
 
-    expect{station.dock(Bike.new)}.to raise_error("No more room for bikes. Have already got #{@capacity}")
+    expect{station.dock(Bike.new)}.to raise_error("No more room for bikes. Already full")
   end
 end
 end

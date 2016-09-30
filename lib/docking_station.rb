@@ -3,7 +3,7 @@ class DockingStation
   #DEFAULT_CAPACITY= 20
 
 
-  def initialize(capacity)
+  def initialize(capacity = 20)
     @capacity = capacity
     @dock_arr = []
 
@@ -15,12 +15,12 @@ class DockingStation
   end
 
   def dock(bike)
-    fail "No more room for bikes. Have already got #{@capacity}" if full
+    fail "No more room for bikes. Already full" if full
     @dock_arr << bike
   end
 
 private
-attr_reader :bike, :dock_arr, :capacity
+#attr_reader :bike, :dock_arr, :capacity
   def full
     @dock_arr.length >= @capacity
   end
