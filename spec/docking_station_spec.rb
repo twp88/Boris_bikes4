@@ -16,8 +16,6 @@ describe 'docking_station' do
   end
 
   context 'Working bike docking station functions' do
-
-
     it 'gives bike' do
       @station.dock(@bike) #turned out these were "bleeding" into the other test, so repeating is the only way I found to make things work :P
       expect(@station.release_bike).to be_kind_of(Bike)
@@ -30,19 +28,21 @@ describe 'docking_station' do
 
 
   it 'checks user set capacity' do
+    puts @station.capacity
     expect(@station.capacity).to eq(20)
   end
 
 
 end
 
-describe "Cant accept anymore bikes" do
+context "Cant accept anymore bikes" do
   station = DockingStation.new(40)
   it "fails cos there are too many bikes}" do
 
     40.times {station.dock(Bike.new)}
 
-    expect{station.dock(Bike.new)}.to raise_error("No more room for bikes. Already full")
+    expect{station.dock(Bike.new)}.to raise_error("No more room for bikes. Already full with #{station.capacity} bikes")
+    puts station.capacity
   end
 end
 end

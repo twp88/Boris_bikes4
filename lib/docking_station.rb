@@ -15,7 +15,7 @@ class DockingStation
   end
 
   def dock(bike)
-    fail "No more room for bikes. Already full" if full
+    fail "No more room for bikes. Already full with #{@capacity} bikes" if full
     @dock_arr << bike
   end
 
