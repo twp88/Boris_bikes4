@@ -44,9 +44,23 @@ context "Cant accept anymore bikes" do
   end
 end
 
-context "bike is broken?"
-it "checks status of the bike" do
-  expect(@bike.working).to eq(false)
+context "bike is broken?" do
+it "checks status of the bike has been changed" do
+  @bike.working(false)
+  expect(@bike.works).to eq(false)
+  end
 end
-
+#
+# context "check to see if status is set when docking" do
+#   it "checks to see if the status is set when docking" do
+#     expect(@bike.working(status)).to eq(true || false)
+#   end
+# end
+#
+# context "reporting the status of bike" do
+#   it "check to see if the user can change the status" do
+#     @bike.working(false)
+#     expect(@bike.working(status)).to eq false
+#   end
+# end
 end

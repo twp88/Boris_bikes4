@@ -7,7 +7,7 @@ describe Bike do
 
   context "bike is broken?" do
     it "checks status of the bike" do
-      expect(@bike.working).to eq(false)
+      expect(@bike.works).to eq(true)
     end
   end
 end
