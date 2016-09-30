@@ -28,7 +28,6 @@ describe 'docking_station' do
 
 
   it 'checks user set capacity' do
-    puts @station.capacity
     expect(@station.capacity).to eq(20)
   end
 
@@ -42,7 +41,6 @@ context "Cant accept anymore bikes" do
     40.times {station.dock(Bike.new)}
 
     expect{station.dock(Bike.new)}.to raise_error("No more room for bikes. Already full with #{station.capacity} bikes")
-    puts station.capacity
   end
 end
 end
