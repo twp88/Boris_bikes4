@@ -4,11 +4,11 @@ require './lib/bike'
 describe 'docking_station' do
   before(:each) do
     @station = DockingStation.new(20)
-    @bike = Bike.new
+    @bike = double(:bike)
 
     end#
 
-  context 'Empty Docking Station' do #context - the same thing as describe, just a convention, see link
+  context 'Empty Docking Station' do
     it {expect(@station).to respond_to(:release_bike)}
     it {expect(@station).to respond_to(:dock).with(1).argument}
     it {expect{@station.release_bike}.to raise_error("No more bikes you fool!")}
@@ -17,13 +17,13 @@ describe 'docking_station' do
 
   context 'Working bike docking station functions' do
     it 'gives bike' do
-      @station.dock(@bike) #turned out these were "bleeding" into the other test, so repeating is the only way I found to make things work :P
-      expect(@station.release_bike).to be_kind_of(Bike)
+      @station.dock(@bike) #TESTING MORE THAN ONE CLASS
+      expect(@station.release_bike).to be_kind_of(double(:bike)) #TESTING MORE THAN ONE CLASS
     end
 
     it 'showed docked bikes' do
-      @station.dock(@bike)
-      expect(@station.dock_arr).to eq([@bike])
+      @station.dock(@bike) #TESTING MORE THAN ONE CLASS
+      expect(@station.dock_arr).to eq([@bike]) #TESTING MORE THAN ONE CLASS
     end
 
 
@@ -38,23 +38,17 @@ context "Cant accept anymore bikes" do
   station = DockingStation.new(40)
   it "fails cos there are too many bikes}" do
 
-    40.times {station.dock(Bike.new)}
+    40.times {station.dock(double(:bike))} #TESTING MORE THAN ONE CLASS
 
-    expect{station.dock(Bike.new)}.to raise_error("No more room for bikes. Already full with #{station.capacity} bikes")
+    expect{station.dock(double(:bike))}.to raise_error("No more room for bikes. Already full with #{station.capacity} bikes") #TESTING MORE THAN ONE CLASS
   end
 end
 
-context "bike is broken?" do
-it "checks status of the bike has been changed" do
-  @bike.working(false)
-  expect(@bike.works).to eq(false)
-  end
-end
 
 context "Release bike or not" do
   it "realeases the bike if it works, but not if it doesn't " do
     @bike.working(false)
-    @station.dock(@bike)
+    @station.dock(@bike) #TESTING MORE THAN ONE CLASS
     expect{@station.release_bike}.to raise_error("Your bike doesn't work.")
   end
 end
