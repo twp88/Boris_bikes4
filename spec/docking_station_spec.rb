@@ -50,17 +50,13 @@ it "checks status of the bike has been changed" do
   expect(@bike.works).to eq(false)
   end
 end
-#
-# context "check to see if status is set when docking" do
-#   it "checks to see if the status is set when docking" do
-#     expect(@bike.working(status)).to eq(true || false)
-#   end
-# end
-#
-# context "reporting the status of bike" do
-#   it "check to see if the user can change the status" do
-#     @bike.working(false)
-#     expect(@bike.working(status)).to eq false
-#   end
-# end
+
+context "Release bike or not" do
+  it "realeases the bike if it works, but not if it doesn't " do
+    @bike.working(false)
+    @station.dock(@bike)
+    expect{@station.release_bike}.to raise_error("Your bike doesn't work.")
+  end
+end
+
 end

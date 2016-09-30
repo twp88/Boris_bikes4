@@ -11,8 +11,7 @@ class DockingStation
 
   def release_bike
     fail "No more bikes you fool!" unless empty
-    # @dock_arr.each {|bike| if @works == true}
-    # "Your bike doesn't work, choose another one"
+    fail "Your bike doesn't work." if @dock_arr[-1].works == false
     @dock_arr.pop
   end
 
@@ -20,11 +19,7 @@ class DockingStation
     fail "No more room for bikes. Already full with #{@capacity} bikes" if full
     @dock_arr << bike
   end
-=begin
-  def broken(user_broken)
-    @works = user_broken if user_broken != @works
-  end
-=end
+
 private
 #attr_reader :bike, :dock_arr, :capacity
   def full
